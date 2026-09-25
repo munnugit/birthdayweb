@@ -1,0 +1,3853 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday, Ma'am 🎂</title>
+
+<meta name="description"
+content="A special digital birthday surprise made with respect, gratitude and love.">
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+    background:#050816;
+    color:white;
+
+    overflow-x:hidden;
+}
+
+button{
+    font-family:inherit;
+}
+
+:root{
+    --purple:#8b5cf6;
+    --pink:#ec4899;
+    --cyan:#22d3ee;
+    --blue:#3b82f6;
+    --gold:#fbbf24;
+    --bg:#050816;
+    --border:rgba(255,255,255,.12);
+}
+
+
+/* =========================================================
+   PREMIUM OPENING SCREEN
+========================================================= */
+
+#birthdayIntro{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(139,92,246,.2),
+        transparent 35%
+    ),
+    #03050f;
+
+    overflow:hidden;
+
+    transition:
+    opacity 1.2s ease,
+    visibility 1.2s ease;
+}
+
+#birthdayIntro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro-glow{
+    position:absolute;
+
+    width:550px;
+    height:550px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(139,92,246,.18),
+        transparent 70%
+    );
+
+    animation:
+    introGlow 5s ease-in-out infinite;
+}
+
+@keyframes introGlow{
+    0%,100%{
+        transform:scale(.9);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+}
+
+.intro-step{
+    position:absolute;
+
+    width:min(90%,750px);
+
+    opacity:0;
+
+    transform:
+    translateY(30px)
+    scale(.96);
+
+    pointer-events:none;
+
+    transition:
+    opacity .9s ease,
+    transform .9s ease;
+}
+
+.intro-step.active{
+    opacity:1;
+
+    transform:
+    translateY(0)
+    scale(1);
+
+    pointer-events:auto;
+}
+
+.tiny-stars{
+    color:#c4b5fd;
+
+    font-size:26px;
+
+    letter-spacing:15px;
+
+    margin-bottom:30px;
+
+    animation:
+    starsPulse 2s infinite;
+}
+
+@keyframes starsPulse{
+    0%,100%{
+        opacity:.4;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+.intro-small{
+    color:#94a3b8;
+
+    font-size:15px;
+
+    letter-spacing:1px;
+
+    margin-bottom:15px;
+}
+
+.intro-step h1{
+    font-size:
+    clamp(45px,8vw,85px);
+
+    letter-spacing:-4px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffffff,
+        #c4b5fd,
+        #f9a8d4,
+        #67e8f9
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    background-size:200% auto;
+
+    animation:
+    gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove{
+    to{
+        background-position:200% center;
+    }
+}
+
+.intro-step h2{
+    font-size:
+    clamp(27px,5vw,48px);
+
+    line-height:1.2;
+
+    margin:15px 0;
+
+    letter-spacing:-1px;
+}
+
+.intro-step p{
+    color:#94a3b8;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading-line{
+    width:180px;
+    height:3px;
+
+    background:
+    rgba(255,255,255,.1);
+
+    border-radius:20px;
+
+    margin:30px auto;
+
+    overflow:hidden;
+}
+
+.loading-line span{
+    display:block;
+
+    width:0;
+    height:100%;
+
+    background:
+    linear-gradient(
+        90deg,
+        var(--purple),
+        var(--pink)
+    );
+
+    animation:
+    loading 2.5s ease forwards;
+}
+
+@keyframes loading{
+    to{
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope{
+    font-size:90px;
+
+    margin-bottom:25px;
+
+    animation:
+    envelopeFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes envelopeFloat{
+    0%,100%{
+        transform:
+        translateY(0)
+        rotate(-3deg);
+    }
+
+    50%{
+        transform:
+        translateY(-15px)
+        rotate(3deg);
+    }
+}
+
+
+/* =========================================================
+   INTRO GIFT
+========================================================= */
+
+.gift-box{
+    width:150px;
+    height:150px;
+
+    position:relative;
+
+    margin:
+    0 auto 30px;
+
+    animation:
+    giftFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes giftFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.gift-body{
+    position:absolute;
+
+    left:15px;
+    bottom:0;
+
+    width:120px;
+    height:100px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:65px;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #ec4899
+    );
+
+    box-shadow:
+    0 20px 60px
+    rgba(139,92,246,.4);
+}
+
+.gift-lid{
+    position:absolute;
+
+    z-index:2;
+
+    left:5px;
+    top:35px;
+
+    width:140px;
+    height:30px;
+
+    border-radius:8px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #a78bfa,
+        #f472b6
+    );
+}
+
+.gift-lid span{
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    transform:
+    translateX(-50%);
+
+    width:18px;
+    height:100%;
+
+    background:
+    rgba(255,255,255,.4);
+}
+
+
+/* =========================================================
+   OPEN BUTTON
+========================================================= */
+
+.open-gift-btn{
+    margin-top:30px;
+
+    border:none;
+
+    padding:16px 30px;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink)
+    );
+
+    box-shadow:
+    0 15px 45px
+    rgba(139,92,246,.35);
+
+    transition:.3s;
+}
+
+.open-gift-btn:hover{
+    transform:
+    translateY(-4px)
+    scale(1.04);
+
+    box-shadow:
+    0 20px 60px
+    rgba(236,72,153,.4);
+}
+
+
+/* =========================================================
+   FINAL INTRO
+========================================================= */
+
+.birthday-big{
+    font-size:100px;
+
+    animation:
+    birthdayPop 1.5s ease-in-out infinite;
+}
+
+@keyframes birthdayPop{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+.intro-birthday{
+    font-size:
+    clamp(50px,9vw,100px)!important;
+
+    line-height:.95;
+
+    margin:15px 0 25px;
+}
+
+.intro-final{
+    font-size:18px;
+
+    color:#cbd5e1!important;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background{
+    position:fixed;
+
+    inset:0;
+
+    z-index:-10;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(
+        circle at 20% 20%,
+        rgba(139,92,246,.15),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 80% 30%,
+        rgba(236,72,153,.12),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 50% 90%,
+        rgba(34,211,238,.08),
+        transparent 35%
+    ),
+
+    #050816;
+}
+
+.grid{
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+    ),
+
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+    );
+
+    background-size:50px 50px;
+
+    mask-image:
+    linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+    );
+}
+
+.orb{
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(80px);
+
+    opacity:.45;
+
+    animation:
+    floatOrb 12s ease-in-out infinite;
+}
+
+.orb.one{
+    width:350px;
+    height:350px;
+
+    background:var(--purple);
+
+    left:-120px;
+    top:10%;
+}
+
+.orb.two{
+    width:300px;
+    height:300px;
+
+    background:var(--pink);
+
+    right:-100px;
+    top:35%;
+
+    animation-delay:-4s;
+}
+
+.orb.three{
+    width:280px;
+    height:280px;
+
+    background:var(--cyan);
+
+    left:35%;
+    bottom:-150px;
+
+    animation-delay:-8s;
+}
+
+@keyframes floatOrb{
+    0%,100%{
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+
+    50%{
+        transform:
+        translate(50px,-40px)
+        scale(1.1);
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav{
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:72px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 7%;
+
+    z-index:100;
+
+    background:
+    rgba(5,8,22,.55);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:18px;
+
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--purple);
+}
+
+.nav-right{
+    display:flex;
+
+    gap:12px;
+
+    align-items:center;
+}
+
+.music-btn{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    border:
+    1px solid
+    var(--border);
+
+    background:
+    rgba(255,255,255,.06);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.music-btn:hover{
+    transform:scale(1.08);
+
+    background:
+    rgba(139,92,246,.2);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    position:relative;
+
+    padding:
+    120px 7% 80px;
+
+    text-align:left;
+}
+
+.hero-layout{
+    width:min(1200px,100%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    1.1fr .9fr;
+
+    gap:70px;
+
+    align-items:center;
+}
+
+.hero-content{
+    max-width:700px;
+
+    animation:
+    heroIn 1.3s ease;
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+
+        transform:
+        translateY(40px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+        translateY(0);
+    }
+}
+
+.badge{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+    9px 16px;
+
+    border-radius:999px;
+
+    background:
+    rgba(139,92,246,.12);
+
+    border:
+    1px solid
+    rgba(139,92,246,.3);
+
+    color:#ddd6fe;
+
+    font-size:13px;
+
+    margin-bottom:25px;
+}
+
+.badge-dot{
+    width:7px;
+    height:7px;
+
+    background:#34d399;
+
+    border-radius:50%;
+
+    box-shadow:
+    0 0 12px #34d399;
+}
+
+.hero h1{
+    font-size:
+    clamp(48px,8vw,105px);
+
+    line-height:.95;
+
+    letter-spacing:-5px;
+
+    margin-bottom:25px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffffff,
+        #c4b5fd,
+        #f9a8d4,
+        #67e8f9
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    background-size:200% auto;
+
+    animation:
+    gradientMove 5s linear infinite;
+}
+
+.hero-subtitle{
+    max-width:650px;
+
+    margin:0;
+
+    color:#cbd5e1;
+
+    font-size:
+    clamp(16px,2vw,21px);
+
+    line-height:1.7;
+}
+
+.hero-subtitle strong{
+    color:white;
+}
+
+.hero-content .buttons{
+    justify-content:flex-start;
+}
+
+
+/* =========================================================
+   HERO PHOTO
+========================================================= */
+
+.hero-photo-area{
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    min-height:500px;
+}
+
+.hero-photo-glow{
+    position:absolute;
+
+    width:430px;
+    height:430px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(139,92,246,.28),
+        rgba(236,72,153,.12),
+        transparent 70%
+    );
+
+    filter:blur(15px);
+
+    animation:
+    heroPhotoGlow 5s ease-in-out infinite;
+}
+
+@keyframes heroPhotoGlow{
+    0%,100%{
+        transform:scale(.9);
+        opacity:.7;
+    }
+
+    50%{
+        transform:scale(1.1);
+        opacity:1;
+    }
+}
+
+.hero-photo-ring{
+    position:relative;
+
+    width:390px;
+    height:390px;
+
+    padding:8px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink),
+        var(--cyan)
+    );
+
+    box-shadow:
+    0 0 70px
+    rgba(139,92,246,.28),
+
+    0 30px 80px
+    rgba(0,0,0,.5);
+
+    animation:
+    heroPhotoFloat 5s ease-in-out infinite;
+}
+
+@keyframes heroPhotoFloat{
+    0%,100%{
+        transform:
+        translateY(0)
+        rotate(-1deg);
+    }
+
+    50%{
+        transform:
+        translateY(-15px)
+        rotate(1deg);
+    }
+}
+
+.hero-photo{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:
+    6px solid
+    #080b18;
+
+    background:#080b18;
+}
+
+.hero-photo-badge{
+    position:absolute;
+
+    padding:
+    11px 17px;
+
+    border-radius:999px;
+
+    background:
+    rgba(5,8,22,.82);
+
+    border:
+    1px solid
+    rgba(255,255,255,.14);
+
+    backdrop-filter:blur(15px);
+
+    color:#e2e8f0;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    box-shadow:
+    0 15px 40px
+    rgba(0,0,0,.35);
+
+    white-space:nowrap;
+
+    z-index:3;
+}
+
+.hero-photo-badge.one{
+    top:70px;
+    right:-10px;
+
+    animation:
+    badgeFloat 4s ease-in-out infinite;
+}
+
+.hero-photo-badge.two{
+    bottom:70px;
+    left:-15px;
+
+    animation:
+    badgeFloat 4s ease-in-out infinite -2s;
+}
+
+@keyframes badgeFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-9px);
+    }
+}
+
+
+/* =========================================================
+   FLOATING EMOJIS
+========================================================= */
+
+.floating{
+    position:absolute;
+
+    font-size:35px;
+
+    pointer-events:none;
+
+    animation:
+    floatEmoji 5s ease-in-out infinite;
+}
+
+.f1{
+    left:8%;
+    top:25%;
+}
+
+.f2{
+    right:10%;
+    top:25%;
+
+    animation-delay:-1s;
+}
+
+.f3{
+    left:14%;
+    bottom:20%;
+
+    animation-delay:-2s;
+}
+
+.f4{
+    right:15%;
+    bottom:18%;
+
+    animation-delay:-3s;
+}
+
+@keyframes floatEmoji{
+    0%,100%{
+        transform:
+        translateY(0)
+        rotate(-5deg);
+    }
+
+    50%{
+        transform:
+        translateY(-25px)
+        rotate(8deg);
+    }
+}
+
+
+/* =========================================================
+   TEACHER PHOTO SECTION
+========================================================= */
+
+.photo-section{
+    padding:
+    80px 7% 110px;
+
+    position:relative;
+}
+
+.photo-container{
+    max-width:1050px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+    padding:45px;
+
+    border-radius:32px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(139,92,246,.12),
+        rgba(236,72,153,.07),
+        rgba(255,255,255,.035)
+    );
+
+    border:
+    1px solid
+    var(--border);
+
+    box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.35);
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.photo-container::before{
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    left:-150px;
+    top:-150px;
+
+    border-radius:50%;
+
+    background:
+    rgba(139,92,246,.15);
+
+    filter:blur(50px);
+
+    pointer-events:none;
+}
+
+.teacher-photo-wrapper{
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    min-height:390px;
+}
+
+.teacher-photo-ring{
+    width:330px;
+    height:330px;
+
+    padding:7px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink),
+        var(--cyan)
+    );
+
+    box-shadow:
+    0 0 50px
+    rgba(139,92,246,.25),
+
+    0 25px 70px
+    rgba(0,0,0,.45);
+
+    animation:
+    photoGlow 4s ease-in-out infinite;
+}
+
+@keyframes photoGlow{
+    0%,100%{
+        box-shadow:
+        0 0 40px
+        rgba(139,92,246,.22),
+
+        0 25px 70px
+        rgba(0,0,0,.45);
+    }
+
+    50%{
+        box-shadow:
+        0 0 75px
+        rgba(236,72,153,.3),
+
+        0 25px 70px
+        rgba(0,0,0,.45);
+    }
+}
+
+.teacher-photo{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:
+    5px solid
+    #080b18;
+
+    background:#080b18;
+}
+
+.photo-badge{
+    position:absolute;
+
+    padding:
+    10px 16px;
+
+    border-radius:999px;
+
+    background:
+    rgba(5,8,22,.8);
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    color:#e2e8f0;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    box-shadow:
+    0 15px 40px
+    rgba(0,0,0,.3);
+
+    animation:
+    photoBadgeFloat 4s ease-in-out infinite;
+}
+
+.photo-badge.top{
+    top:45px;
+    right:15px;
+}
+
+.photo-badge.bottom{
+    bottom:45px;
+    left:5px;
+
+    animation-delay:-2s;
+}
+
+@keyframes photoBadgeFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.photo-content{
+    position:relative;
+    z-index:2;
+}
+
+.photo-label{
+    color:#a78bfa;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+}
+
+.photo-content h2{
+    font-size:
+    clamp(38px,5vw,60px);
+
+    line-height:1;
+
+    letter-spacing:-3px;
+
+    margin-bottom:25px;
+}
+
+.photo-content h2 span{
+    background:
+    linear-gradient(
+        90deg,
+        #a78bfa,
+        #f472b6,
+        #67e8f9
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+}
+
+.photo-content p{
+    color:#94a3b8;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+    margin-bottom:18px;
+}
+
+.photo-quote{
+    padding:
+    18px 20px;
+
+    margin-top:25px;
+
+    border-left:
+    3px solid
+    var(--purple);
+
+    background:
+    rgba(139,92,246,.07);
+
+    border-radius:
+    0 15px 15px 0;
+
+    color:#cbd5e1!important;
+
+    font-style:italic;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section{
+    padding:
+    110px 7%;
+
+    position:relative;
+}
+
+.section-container{
+    max-width:1150px;
+    margin:auto;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-heading span{
+    color:#a78bfa;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-weight:700;
+}
+
+.section-heading h2{
+    margin-top:12px;
+
+    font-size:
+    clamp(32px,5vw,55px);
+
+    letter-spacing:-2px;
+}
+
+.section-heading p{
+    color:#94a3b8;
+
+    max-width:650px;
+
+    margin:15px auto 0;
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   SURPRISE CARD
+========================================================= */
+
+.surprise-wrapper{
+    display:flex;
+
+    justify-content:center;
+}
+
+.surprise-card{
+    width:min(900px,100%);
+
+    padding:55px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(139,92,246,.15),
+        rgba(236,72,153,.08),
+        rgba(255,255,255,.04)
+    );
+
+    border:
+    1px solid
+    var(--border);
+
+    box-shadow:
+    0 25px 80px
+    rgba(0,0,0,.45);
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.gift{
+    font-size:75px;
+
+    display:inline-block;
+
+    animation:
+    giftBounce 2s ease-in-out infinite;
+}
+
+@keyframes giftBounce{
+    0%,100%{
+        transform:
+        translateY(0)
+        rotate(-3deg);
+    }
+
+    50%{
+        transform:
+        translateY(-12px)
+        rotate(3deg);
+    }
+}
+
+
+/* =========================================================
+   SENDER REVEAL
+========================================================= */
+
+.sender-reveal{
+    margin-top:10px;
+}
+
+.reveal-sender-note{
+    color:#94a3b8;
+
+    font-size:14px;
+
+    margin-top:5px;
+}
+
+.reveal-sender-btn{
+    margin-top:18px;
+
+    border:
+    1px solid
+    rgba(167,139,250,.35);
+
+    background:
+    rgba(139,92,246,.1);
+
+    color:#ddd6fe;
+
+    padding:
+    13px 22px;
+
+    border-radius:14px;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.35s;
+}
+
+.reveal-sender-btn:hover{
+    transform:
+    translateY(-4px)
+    scale(1.03);
+
+    background:
+    rgba(139,92,246,.2);
+
+    box-shadow:
+    0 15px 40px
+    rgba(139,92,246,.2);
+}
+
+.reveal-sender-btn:disabled{
+    cursor:default;
+    opacity:.8;
+}
+
+.gift.opened{
+    animation:
+    giftOpen .7s ease forwards;
+}
+
+@keyframes giftOpen{
+    0%{
+        transform:
+        scale(1)
+        rotate(0);
+    }
+
+    40%{
+        transform:
+        scale(1.3)
+        rotate(-8deg);
+    }
+
+    70%{
+        transform:
+        scale(.9)
+        rotate(8deg);
+    }
+
+    100%{
+        transform:
+        scale(1)
+        rotate(0);
+    }
+}
+
+
+/* SENDER CARD */
+
+.sender-card{
+    display:none;
+
+    margin-top:35px;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(139,92,246,.14),
+        rgba(236,72,153,.08),
+        rgba(255,255,255,.04)
+    );
+
+    border:
+    1px solid
+    rgba(167,139,250,.25);
+
+    box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.35);
+}
+
+.sender-card.show{
+    display:block;
+
+    animation:
+    senderReveal .9s ease forwards;
+}
+
+@keyframes senderReveal{
+    from{
+        opacity:0;
+
+        transform:
+        translateY(35px)
+        scale(.94);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+    }
+}
+
+.sender-photo-wrapper{
+    width:130px;
+    height:130px;
+
+    padding:5px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink),
+        var(--cyan)
+    );
+
+    box-shadow:
+    0 0 45px
+    rgba(139,92,246,.25);
+}
+
+.sender-photo{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    border-radius:50%;
+
+    border:
+    4px solid
+    #080b18;
+}
+
+.sender-card h4{
+    font-size:26px;
+
+    margin-bottom:10px;
+}
+
+.sender-card p{
+    color:#94a3b8;
+
+    line-height:1.7;
+
+    font-size:14px;
+
+    max-width:600px;
+
+    margin:auto;
+}
+
+.sender-signature{
+    margin-top:18px;
+
+    color:#c4b5fd;
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.surprise-card h3{
+    font-size:
+    clamp(28px,5vw,48px);
+
+    margin:20px 0;
+}
+
+.typewriter{
+    color:#cbd5e1;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    min-height:90px;
+}
+
+.cursor{
+    color:#a78bfa;
+
+    animation:
+    blink .8s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons{
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:40px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+    border:none;
+
+    padding:
+    15px 24px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    text-decoration:none;
+}
+
+.btn-primary{
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink)
+    );
+
+    box-shadow:
+    0 15px 40px
+    rgba(139,92,246,.25);
+}
+
+.btn-primary:hover{
+    transform:
+    translateY(-4px)
+    scale(1.02);
+}
+
+.btn-secondary{
+    color:white;
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid
+    var(--border);
+}
+
+.btn-secondary:hover{
+    background:
+    rgba(255,255,255,.1);
+
+    transform:
+    translateY(-4px);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.info-card{
+    padding:32px;
+
+    border-radius:24px;
+
+    background:
+    rgba(255,255,255,.045);
+
+    border:
+    1px solid
+    var(--border);
+
+    transition:.4s;
+}
+
+.info-card:hover{
+    transform:
+    translateY(-8px);
+
+    border-color:
+    rgba(139,92,246,.5);
+
+    background:
+    rgba(255,255,255,.07);
+}
+
+.card-icon{
+    width:55px;
+    height:55px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    border-radius:16px;
+
+    font-size:25px;
+
+    background:
+    rgba(139,92,246,.14);
+
+    margin-bottom:25px;
+}
+
+.info-card h3{
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.info-card p{
+    color:#94a3b8;
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   CODE WINDOW
+========================================================= */
+
+.code-window{
+    max-width:850px;
+
+    margin:auto;
+
+    background:#080b18;
+
+    border:
+    1px solid
+    rgba(255,255,255,.1);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.45);
+}
+
+.window-top{
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+    gap:8px;
+}
+
+.dot{
+    width:11px;
+    height:11px;
+
+    border-radius:50%;
+
+    background:#64748b;
+}
+
+.filename{
+    margin-left:12px;
+
+    font-size:12px;
+
+    color:#64748b;
+}
+
+pre{
+    padding:30px;
+
+    overflow-x:auto;
+
+    color:#cbd5e1;
+
+    font-family:
+    monospace;
+
+    font-size:14px;
+
+    line-height:1.9;
+}
+
+.pink{
+    color:#f472b6;
+}
+
+.purple{
+    color:#a78bfa;
+}
+
+.cyan{
+    color:#67e8f9;
+}
+
+.green{
+    color:#86efac;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-section{
+    min-height:80vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+.final-content{
+    max-width:900px;
+}
+
+.big-heart{
+    font-size:70px;
+
+    animation:
+    heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    15%{
+        transform:scale(1.15);
+    }
+
+    30%{
+        transform:scale(1);
+    }
+
+    45%{
+        transform:scale(1.12);
+    }
+}
+
+.final-content h2{
+    font-size:
+    clamp(38px,7vw,75px);
+
+    line-height:1;
+
+    letter-spacing:-3px;
+
+    margin:25px 0;
+}
+
+.gradient-text{
+    background:
+    linear-gradient(
+        90deg,
+        #a78bfa,
+        #f472b6,
+        #67e8f9
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+}
+
+.final-content p{
+    color:#94a3b8;
+
+    font-size:18px;
+
+    line-height:1.8;
+}
+
+.signature{
+    margin-top:35px;
+
+    color:#cbd5e1;
+
+    font-size:15px;
+}
+
+.signature strong{
+    display:block;
+
+    color:white;
+
+    font-size:20px;
+
+    margin-top:5px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    text-align:center;
+
+    padding:30px 20px;
+
+    border-top:
+    1px solid
+    rgba(255,255,255,.08);
+
+    color:#64748b;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   BALLOONS
+========================================================= */
+
+.balloon-container{
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:999;
+
+    overflow:hidden;
+}
+
+.balloon{
+    position:absolute;
+
+    bottom:-120px;
+
+    animation:
+    balloonFly linear forwards;
+}
+
+@keyframes balloonFly{
+    to{
+        transform:
+        translateY(-120vh)
+        rotate(20deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti{
+    position:fixed;
+
+    width:8px;
+    height:14px;
+
+    top:-30px;
+
+    z-index:9999;
+
+    pointer-events:none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #a78bfa,
+        #f472b6
+    );
+
+    animation:
+    confettiFall linear forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:
+        translateY(110vh)
+        rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:
+    translateY(40px);
+
+    transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.reveal.active{
+    opacity:1;
+
+    transform:
+    translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:800px){
+
+    nav{
+        padding:0 20px;
+    }
+
+    section{
+        padding:80px 20px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .surprise-card{
+        padding:35px 22px;
+    }
+
+    .floating{
+        display:none;
+    }
+
+    pre{
+        font-size:12px;
+        padding:20px;
+    }
+
+
+    /* HERO MOBILE */
+
+    .hero{
+        text-align:center;
+
+        padding:
+        110px 20px 70px;
+    }
+
+    .hero-layout{
+        grid-template-columns:1fr;
+
+        gap:45px;
+    }
+
+    .hero-content{
+        max-width:100%;
+    }
+
+    .hero-content .buttons{
+        justify-content:center;
+    }
+
+    .hero-photo-area{
+        min-height:370px;
+
+        order:2;
+    }
+
+    .hero-photo-ring{
+        width:300px;
+        height:300px;
+    }
+
+    .hero-photo-badge.one{
+        top:35px;
+        right:5px;
+    }
+
+    .hero-photo-badge.two{
+        bottom:35px;
+        left:5px;
+    }
+
+
+    /* PHOTO SECTION */
+
+    .photo-section{
+        padding:
+        60px 20px 80px;
+    }
+
+    .photo-container{
+        grid-template-columns:1fr;
+
+        gap:40px;
+
+        padding:30px 22px;
+
+        text-align:center;
+    }
+
+    .teacher-photo-wrapper{
+        min-height:330px;
+    }
+
+    .teacher-photo-ring{
+        width:280px;
+        height:280px;
+    }
+
+    .photo-badge.top{
+        top:15px;
+        right:0;
+    }
+
+    .photo-badge.bottom{
+        bottom:15px;
+        left:0;
+    }
+
+    .photo-content h2{
+        letter-spacing:-2px;
+    }
+
+    .photo-quote{
+        text-align:left;
+    }
+}
+
+
+@media(max-width:500px){
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .buttons{
+        width:100%;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .intro-birthday{
+        font-size:55px!important;
+    }
+
+    .birthday-big{
+        font-size:75px;
+    }
+
+    .gift-box{
+        transform:scale(.85);
+    }
+
+
+    /* HERO SMALL MOBILE */
+
+    .hero-photo-area{
+        min-height:310px;
+    }
+
+    .hero-photo-ring{
+        width:245px;
+        height:245px;
+    }
+
+    .hero-photo-badge{
+        font-size:10px;
+
+        padding:
+        8px 11px;
+    }
+
+    .hero-photo-badge.one{
+        top:25px;
+        right:-2px;
+    }
+
+    .hero-photo-badge.two{
+        bottom:25px;
+        left:-2px;
+    }
+
+
+    /* PHOTO SMALL MOBILE */
+
+    .photo-container{
+        padding:25px 18px;
+    }
+
+    .teacher-photo-wrapper{
+        min-height:285px;
+    }
+
+    .teacher-photo-ring{
+        width:235px;
+        height:235px;
+    }
+
+    .photo-badge{
+        font-size:10px;
+        padding:8px 11px;
+    }
+
+    .photo-badge.top{
+        top:10px;
+        right:-3px;
+    }
+
+    .photo-badge.bottom{
+        bottom:10px;
+        left:-3px;
+    }
+
+    .photo-content h2{
+        font-size:38px;
+    }
+
+
+    /* SENDER */
+
+    .sender-card{
+        padding:25px 18px;
+    }
+
+    .sender-photo-wrapper{
+        width:110px;
+        height:110px;
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        scroll-behavior:auto!important;
+        transition-duration:.01ms!important;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     PREMIUM OPENING EXPERIENCE
+========================================================= -->
+
+<div id="birthdayIntro">
+
+    <div class="intro-glow"></div>
+
+
+    <!-- STEP 1 -->
+
+    <div
+        class="intro-step active"
+        id="step1"
+    >
+
+        <div class="tiny-stars">
+            ✦ ✧ ✦
+        </div>
+
+        <p class="intro-small">
+            A little surprise has been prepared for you...
+        </p>
+
+        <h1>
+            Please wait...
+        </h1>
+
+        <div class="loading-line">
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <!-- STEP 2 -->
+
+    <div
+        class="intro-step"
+        id="step2"
+    >
+
+        <div class="envelope">
+            💌
+        </div>
+
+        <p class="intro-small">
+            This message is especially for you
+        </p>
+
+        <h2>
+            Someone wanted to make<br>
+            your day a little more special. ✨
+        </h2>
+
+    </div>
+
+
+    <!-- STEP 3 -->
+
+    <div
+        class="intro-step"
+        id="step3"
+    >
+
+        <div class="gift-box">
+
+            <div class="gift-lid">
+                <span></span>
+            </div>
+
+            <div class="gift-body">
+                🎁
+            </div>
+
+        </div>
+
+        <h2>
+            Your surprise is ready!
+        </h2>
+
+        <p>
+            Tap the button below to open it.
+        </p>
+
+        <button
+            class="open-gift-btn"
+            onclick="openBirthdayGift()"
+        >
+            ✨ Open My Surprise
+        </button>
+
+    </div>
+
+
+    <!-- STEP 4 -->
+
+    <div
+        class="intro-step"
+        id="step4"
+    >
+
+        <div class="birthday-big">
+            🎂
+        </div>
+
+        <p class="intro-small">
+            A very special message for
+        </p>
+
+        <h1 class="intro-birthday">
+            Happy Birthday,<br>
+            Ma'am! 💜
+        </h1>
+
+        <p class="intro-final">
+            Wishing you happiness, success<br>
+            and countless beautiful moments.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     BALLOONS
+========================================================= -->
+
+<div
+    class="balloon-container"
+    id="balloons">
+</div>
+
+
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div class="background">
+
+    <div class="grid"></div>
+
+    <div class="orb one"></div>
+
+    <div class="orb two"></div>
+
+    <div class="orb three"></div>
+
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav>
+
+    <div class="logo">
+
+        Birthday
+        <span>Surprise</span>
+        ✨
+
+    </div>
+
+    <div class="nav-right">
+
+        <button
+            class="music-btn"
+            id="musicBtn"
+            title="Music"
+        >
+            🔇
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN WEBSITE
+========================================================= -->
+
+<main>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="floating f1">
+        🎈
+    </div>
+
+    <div class="floating f2">
+        ✨
+    </div>
+
+    <div class="floating f3">
+        💻
+    </div>
+
+    <div class="floating f4">
+        🎂
+    </div>
+
+
+    <div class="hero-layout">
+
+
+        <!-- LEFT CONTENT -->
+
+        <div class="hero-content">
+
+            <div class="badge">
+
+                <span class="badge-dot"></span>
+
+                A Digital Birthday Surprise
+
+            </div>
+
+
+            <h1>
+
+                Happy Birthday,<br>
+
+                Ma'am! 🎂
+
+            </h1>
+
+
+            <p class="hero-subtitle">
+
+                Today is not just another day...
+
+                <br><br>
+
+                It's a day to celebrate someone who
+                inspires, guides and makes a difference
+                every day.
+
+                <br><br>
+
+                <strong>
+                    This little digital surprise is made
+                    especially for you. 💜
+                </strong>
+
+            </p>
+
+
+            <div class="buttons">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="celebrate()"
+                >
+
+                    🎁 Celebrate
+
+                </button>
+
+
+                <a
+                    href="#message"
+                    class="btn btn-secondary"
+                >
+
+                    ↓ Explore Message
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT PHOTO -->
+
+        <div class="hero-photo-area">
+
+            <div class="hero-photo-glow"></div>
+
+
+            <div class="hero-photo-ring">
+
+                <img
+                    src="teacher.jpeg"
+                    alt="Birthday photo of Ma'am"
+                    class="hero-photo"
+                >
+
+            </div>
+
+
+            <div class="hero-photo-badge one">
+                ✨ Birthday Star
+            </div>
+
+
+            <div class="hero-photo-badge two">
+                🎓 Inspirational Teacher
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TEACHER PHOTO SECTION
+========================================================= -->
+
+<section class="photo-section">
+
+    <div class="photo-container reveal">
+
+
+        <div class="teacher-photo-wrapper">
+
+            <div class="teacher-photo-ring">
+
+                <img
+                    src="teacher.jpeg"
+                    alt="Birthday photo of Ma'am"
+                    class="teacher-photo"
+                >
+
+            </div>
+
+
+            <div class="photo-badge top">
+                ✨ Special Day
+            </div>
+
+
+            <div class="photo-badge bottom">
+                🎓 Inspirational Teacher
+            </div>
+
+        </div>
+
+
+        <div class="photo-content">
+
+            <div class="photo-label">
+                A Special Person
+            </div>
+
+
+            <h2>
+
+                Celebrating
+                <br>
+
+                <span>
+                    You Today 💜
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Today is a beautiful opportunity
+                to celebrate not only your birthday,
+                but also the positive impact you have
+                on the people around you.
+
+            </p>
+
+
+            <p>
+
+                Your guidance, encouragement and
+                dedication make every day a little
+                more meaningful.
+
+            </p>
+
+
+            <p class="photo-quote">
+
+                "The best teachers don't just teach
+                lessons — they inspire people to become
+                better versions of themselves."
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MESSAGE
+========================================================= -->
+
+<section id="message">
+
+    <div class="section-container">
+
+        <div class="section-heading reveal">
+
+            <span>
+                A Message From The Heart
+            </span>
+
+            <h2>
+
+                A Little Something
+                <br>
+                For You 💜
+
+            </h2>
+
+            <p>
+
+                Because some people deserve more
+                than just a birthday wish.
+
+            </p>
+
+        </div>
+
+
+        <div class="surprise-wrapper">
+
+            <div class="surprise-card reveal">
+
+
+                <!-- SENDER REVEAL -->
+
+                <div class="sender-reveal">
+
+                    <div
+                        class="gift"
+                        id="messageGift"
+                    >
+                        🎁
+                    </div>
+
+
+                    <div class="reveal-sender-note">
+
+                        A little surprise from someone
+                        who appreciates you.
+
+                    </div>
+
+
+                    <button
+                        class="reveal-sender-btn"
+                        id="revealSenderBtn"
+                        onclick="revealSender()"
+                    >
+
+                        🔐 Reveal Sender
+
+                    </button>
+
+
+                    <!-- HIDDEN SENDER -->
+
+                    <div
+                        class="sender-card"
+                        id="senderCard"
+                    >
+
+                        <div class="sender-photo-wrapper">
+
+                            <img
+                                src="munnukumar.jpeg"
+                                alt="Munnu Kumar"
+                                class="sender-photo"
+                            >
+
+                        </div>
+
+
+                        <h4>
+                            Munnu Kumar 💻
+                        </h4>
+
+
+                        <p>
+
+                            The person behind this little
+                            digital birthday surprise. ✨
+
+                            <br>
+
+                            Thank you for always inspiring,
+                            guiding and encouraging everyone
+                            around you.
+
+                        </p>
+
+
+                        <div class="sender-signature">
+
+                            With Respect & Best Wishes 💜
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    Dear Ma'am,
+                </h3>
+
+
+                <div class="typewriter">
+
+                    <span id="typedText"></span>
+
+                    <span class="cursor">
+                        |
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="celebrate()"
+                >
+
+                    🎉 Celebrate!
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     APPRECIATION
+========================================================= -->
+
+<section>
+
+    <div class="section-container">
+
+        <div class="section-heading reveal">
+
+            <span>
+                Why This Day Matters
+            </span>
+
+            <h2>
+                More Than Just A Teacher
+            </h2>
+
+            <p>
+
+                Great educators don't simply teach
+                lessons. They leave an impact.
+
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+
+            <div class="info-card reveal">
+
+                <div class="card-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    Leadership
+                </h3>
+
+                <p>
+
+                    Thank you for leading with patience,
+                    dedication and purpose, and for
+                    creating an environment where
+                    everyone can grow.
+
+                </p>
+
+            </div>
+
+
+            <div class="info-card reveal">
+
+                <div class="card-icon">
+                    💡
+                </div>
+
+                <h3>
+                    Inspiration
+                </h3>
+
+                <p>
+
+                    Your guidance encourages students
+                    and colleagues to learn, explore
+                    new ideas and believe in their
+                    potential.
+
+                </p>
+
+            </div>
+
+
+            <div class="info-card reveal">
+
+                <div class="card-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Positive Impact
+                </h3>
+
+                <p>
+
+                    The lessons you share go beyond
+                    classrooms. They become memories,
+                    values and experiences that stay
+                    with people.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IT CODE SECTION
+========================================================= -->
+
+<section>
+
+    <div class="section-container">
+
+        <div class="section-heading reveal">
+
+            <span>
+                IT Teacher Special 💻
+            </span>
+
+            <h2>
+                If A Birthday Could Be Coded...
+            </h2>
+
+            <p>
+                This is how we would write it.
+            </p>
+
+        </div>
+
+
+        <div class="code-window reveal">
+
+            <div class="window-top">
+
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+
+                <span class="filename">
+                    birthday.js
+                </span>
+
+            </div>
+
+
+<pre><span class="pink">const</span> <span class="cyan">birthdayWish</span> = {
+
+  <span class="purple">person</span>:
+    <span class="green">"An Amazing Teacher"</span>,
+
+  <span class="purple">respect</span>:
+    <span class="green">"∞"</span>,
+
+  <span class="purple">gratitude</span>:
+    <span class="green">"∞"</span>,
+
+  <span class="purple">smiles</span>:
+    <span class="green">"Every Day"</span>,
+
+  <span class="purple">success</span>:
+    <span class="green">"Always"</span>,
+
+  <span class="purple">birthday</span>:
+    <span class="green">"HAPPY BIRTHDAY! 🎂"</span>
+};
+
+
+<span class="pink">function</span> <span class="cyan">celebrate</span>() {
+
+  console.log(
+    <span class="green">"Thank you for your
+    leadership & guidance."</span>
+  );
+
+  <span class="pink">return</span>
+    <span class="green">"Wishing you endless
+    happiness & success! 💜"</span>;
+}
+
+
+<span class="cyan">celebrate</span>();</pre>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL MESSAGE
+========================================================= -->
+
+<section class="final-section">
+
+    <div class="final-content reveal">
+
+        <div class="big-heart">
+            💜
+        </div>
+
+
+        <h2>
+
+            Wishing You
+
+            <br>
+
+            <span class="gradient-text">
+
+                Happiness & Success
+
+            </span>
+
+        </h2>
+
+
+        <p>
+
+            May the coming year bring you
+            countless reasons to smile,
+            beautiful moments to remember,
+            and success in everything you do.
+
+            <br><br>
+
+            Thank you for your leadership,
+            guidance and inspiration.
+
+            <br><br>
+
+            <strong>
+                Have a wonderful birthday, Ma'am! 🎂✨
+            </strong>
+
+        </p>
+
+
+        <div class="signature">
+
+            With Respect & Best Wishes,
+
+            <strong>
+                Munnu Kumar 💻
+            </strong>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="btn btn-primary"
+                onclick="celebrate()"
+            >
+
+                🎊 Celebrate Again
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    Made with 💜, code & gratitude.
+
+    <br><br>
+
+    Digital Birthday Surprise • 2026
+
+</footer>
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+
+<audio
+    id="birthdayMusic"
+    loop
+    preload="auto"
+>
+    <source
+        src="birthday.mp3"
+        type="audio/mpeg"
+    >
+</audio>
+
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const intro =
+document.getElementById("birthdayIntro");
+
+const music =
+document.getElementById("birthdayMusic");
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+const steps = [
+
+    document.getElementById("step1"),
+
+    document.getElementById("step2"),
+
+    document.getElementById("step3"),
+
+    document.getElementById("step4")
+
+];
+
+let musicPlaying = false;
+
+
+/* =========================================================
+   INTRO STEP FUNCTION
+========================================================= */
+
+function showIntroStep(number){
+
+    steps.forEach(step => {
+
+        step.classList.remove("active");
+
+    });
+
+    steps[number].classList.add("active");
+
+}
+
+
+/* =========================================================
+   PREVENT SCROLL DURING INTRO
+========================================================= */
+
+document.body.style.overflow="hidden";
+
+
+/* =========================================================
+   STEP 1 → STEP 2
+========================================================= */
+
+setTimeout(()=>{
+
+    showIntroStep(1);
+
+},3000);
+
+
+/* =========================================================
+   STEP 2 → STEP 3
+========================================================= */
+
+setTimeout(()=>{
+
+    showIntroStep(2);
+
+},6500);
+
+
+/* =========================================================
+   MUSIC FUNCTION
+========================================================= */
+
+async function startBirthdayMusic(){
+
+    try{
+
+        /*
+        Set a comfortable volume.
+        */
+
+        music.volume = 0.7;
+
+
+        /*
+        IMPORTANT:
+        This play() happens after the user
+        clicks "Open My Surprise".
+        */
+
+        await music.play();
+
+
+        musicPlaying = true;
+
+        musicBtn.textContent = "🔊";
+
+        musicBtn.title = "Pause Music";
+
+
+    }catch(error){
+
+        console.error(
+            "Music could not start:",
+            error
+        );
+
+        musicPlaying = false;
+
+        musicBtn.textContent = "🔇";
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN BIRTHDAY GIFT
+========================================================= */
+
+async function openBirthdayGift(){
+
+    /*
+    START MUSIC FIRST
+
+    Because this function is called directly
+    from the user's click, browsers normally
+    allow the audio to start here.
+    */
+
+    await startBirthdayMusic();
+
+
+    /*
+    Show birthday screen
+    */
+
+    showIntroStep(3);
+
+
+    /*
+    Celebration
+    */
+
+    createConfetti(200);
+
+    createBalloons(30);
+
+
+    setTimeout(()=>{
+
+        createConfetti(120);
+
+    },700);
+
+
+    setTimeout(()=>{
+
+        createConfetti(100);
+
+    },1500);
+
+
+    /*
+    Hide intro after birthday message
+    */
+
+    setTimeout(()=>{
+
+        intro.classList.add("hide");
+
+        document.body.style.overflow="auto";
+
+    },4500);
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti(amount=120){
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const confetti =
+        document.createElement("div");
+
+
+        confetti.className =
+        "confetti";
+
+
+        confetti.style.left =
+        Math.random()*100+"vw";
+
+
+        confetti.style.animationDuration =
+        (2+Math.random()*3)+"s";
+
+
+        confetti.style.animationDelay =
+        Math.random()+"s";
+
+
+        confetti.style.transform =
+        `rotate(${Math.random()*360}deg)`;
+
+
+        document.body.appendChild(confetti);
+
+
+        setTimeout(()=>{
+
+            confetti.remove();
+
+        },6000);
+
+    }
+
+}
+
+
+/* =========================================================
+   BALLOONS
+========================================================= */
+
+function createBalloons(amount=20){
+
+    const container =
+    document.getElementById("balloons");
+
+
+    const emojis=[
+        "🎈",
+        "🎈",
+        "🎈",
+        "🎁",
+        "✨",
+        "💜",
+        "🎂"
+    ];
+
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const balloon =
+        document.createElement("div");
+
+
+        balloon.className =
+        "balloon";
+
+
+        balloon.textContent =
+        emojis[
+            Math.floor(
+                Math.random()*
+                emojis.length
+            )
+        ];
+
+
+        balloon.style.left =
+        Math.random()*100+"vw";
+
+
+        balloon.style.animationDuration =
+        (5+Math.random()*5)+"s";
+
+
+        balloon.style.animationDelay =
+        Math.random()*1.5+"s";
+
+
+        balloon.style.fontSize =
+        (30+Math.random()*30)+"px";
+
+
+        container.appendChild(balloon);
+
+
+        setTimeout(()=>{
+
+            balloon.remove();
+
+        },11000);
+
+    }
+
+}
+
+
+/* =========================================================
+   CELEBRATE
+========================================================= */
+
+function celebrate(){
+
+    createConfetti(150);
+
+    createBalloons(25);
+
+}
+
+
+/* =========================================================
+   REVEAL SENDER
+========================================================= */
+
+function revealSender(){
+
+    const gift =
+    document.getElementById("messageGift");
+
+    const button =
+    document.getElementById("revealSenderBtn");
+
+    const senderCard =
+    document.getElementById("senderCard");
+
+
+    /*
+    Animate gift
+    */
+
+    gift.classList.remove("opened");
+
+    void gift.offsetWidth;
+
+    gift.classList.add("opened");
+
+
+    /*
+    Change button
+    */
+
+    button.textContent =
+    "💜 Sender Revealed";
+
+    button.disabled = true;
+
+
+    /*
+    Celebration
+    */
+
+    createConfetti(80);
+
+    createBalloons(12);
+
+
+    /*
+    Reveal sender
+    */
+
+    setTimeout(()=>{
+
+        senderCard.classList.add("show");
+
+
+        senderCard.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"center"
+
+        });
+
+
+    },700);
+
+}
+
+
+/* =========================================================
+   TYPEWRITER
+========================================================= */
+
+const message =
+
+"On your special day, I simply want to say thank you. Thank you for your leadership, your guidance, your patience and the positive difference you make every day. May this new chapter of your life be filled with happiness, success, good health and countless beautiful moments. You truly deserve the very best. Happy Birthday, Ma'am! 🎂💐";
+
+
+const typedText =
+document.getElementById("typedText");
+
+
+let index=0;
+
+
+function typeWriter(){
+
+    if(index < message.length){
+
+        typedText.textContent +=
+        message.charAt(index);
+
+        index++;
+
+        setTimeout(
+            typeWriter,
+            28
+        );
+
+    }
+
+}
+
+
+setTimeout(
+    typeWriter,
+    1800
+);
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const observer =
+new IntersectionObserver(
+
+    entries=>{
+
+        entries.forEach(entry=>{
+
+            if(
+                entry.isIntersecting
+            ){
+
+                entry.target
+                .classList
+                .add("active");
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:.15
+    }
+
+);
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>{
+
+    observer.observe(el);
+
+});
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+musicBtn.addEventListener(
+    "click",
+    async () => {
+
+        try{
+
+            /*
+            If music is paused,
+            play it.
+            */
+
+            if(music.paused){
+
+                music.volume = 0.7;
+
+                await music.play();
+
+            }
+
+            /*
+            Otherwise pause it.
+            */
+
+            else{
+
+                music.pause();
+
+            }
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Music error:",
+                error
+            );
+
+            alert(
+                "Music could not play. Please make sure birthday.mp3 is in the same folder as index.html."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MUSIC EVENTS
+========================================================= */
+
+music.addEventListener(
+    "play",
+    ()=>{
+
+        musicPlaying = true;
+
+        musicBtn.textContent = "🔊";
+
+        musicBtn.title =
+        "Pause Music";
+
+    }
+);
+
+
+music.addEventListener(
+    "pause",
+    ()=>{
+
+        musicPlaying = false;
+
+        musicBtn.textContent = "🔇";
+
+        musicBtn.title =
+        "Play Music";
+
+    }
+);
+
+
+/* =========================================================
+   AUDIO ERROR CHECK
+========================================================= */
+
+music.addEventListener(
+    "error",
+    ()=>{
+
+        console.error(
+            "Audio file could not be loaded."
+        );
+
+        console.error(
+            "Expected file: birthday.mp3"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SMALL FIRST CONFETTI
+========================================================= */
+
+setTimeout(()=>{
+
+    createConfetti(30);
+
+},11000);
+
+</script>
+
+</body>
+</html>
